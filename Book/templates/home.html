@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h2 class="text-2xl font-bold mb-4">Welcome to the Library Management System</h2>
+<p>Explore our collection of books and manage your account seamlessly.</p>
+<h1 style="margin-top: 30px;">BOOK CATEGORY:</h1>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+    {% for category in categories %}
+        <div>
+            <a href="?category={{ category.id }}" class="block bg-white p-4 rounded shadow">
+                {{ category.name }}
+            </a>
+        </div>
+    {% endfor %}
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+    {% for book in books %}
+        <div class="bg-white p-4 rounded shadow">
+            <img src="{{ book.image.url }}" alt="{{ book.title }}" class="w-full h-48 object-cover">
+            <h3 class="text-xl font-bold mt-2">{{ book.title }}</h3>
+            <p>{{ book.description|truncatewords:20 }}</p>
+            <a href="{% url 'book_detail' book.id %}" class="text-blue-500">Read more</a>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

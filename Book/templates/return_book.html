@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 class="text-2xl font-bold mb-4">Return Book</h2>
+<p>Are you sure you want to return "{{ borrow.book.title }}"?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Confirm Return</button>
+</form>
+{% endblock %}
